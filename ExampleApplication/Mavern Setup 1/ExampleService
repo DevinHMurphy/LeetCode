@@ -1,0 +1,7 @@
+@Service
+@RequiredArgsConstructor
+public class ExampleService{
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExampleService.class);
+
+    public doPostRequest
+}

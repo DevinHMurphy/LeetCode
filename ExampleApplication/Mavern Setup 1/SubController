@@ -1,0 +1,19 @@
+@RestController
+@RequiredArgsConstructor
+@RequestMapping(value = {"/subController"})
+@Tag(name = "example sub controller that modifies all endpoints and requires /subController/ to be added before the specified endpoint")
+public class SubController {
+    private final ExampleService exampleService;
+
+    //Example Get Request
+    @GetMapping("example-get-endpoint")
+    public void getRequest(@RequestHeader Map<String, String> headers, @RequestParam String requiredString){
+        exampleService.doGetRequest(headers, requiredString);
+    }
+
+    //Example POST request
+    @PostMapping("example-post-endpoint")
+    public void postRequest(@RequestHeader Map<String, String> headers, @RequestBody PostRequestBody postRequestBody){
+        exampleService.doPostRequest(headers, postRequestBody);
+    }
+}

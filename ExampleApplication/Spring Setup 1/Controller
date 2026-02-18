@@ -1,0 +1,25 @@
+//An example of a controller method, that intakes 
+
+
+@RequestMapping(value = "requestEndPoint", method RequestMethod.POST)
+@Operation(summary = "This is the method's summary, it should say what it does")
+    @ApiResponse(responseCode = "200", description "Okay")
+    @ApiResponse(responseCode = "401", description "Unauthorized")
+    @ApiResponse(responseCode = "404", description "Not Found")
+    @ApiResponse(responseCode = "500", description "Internal server problems")
+    @ApiResponse(responseCode = "504", description "INTERNAL_SERVER_ERROR")
+public ResponseObject apiMethod(@RequestBody RequestObject requestObject)
+    throws customException{
+        //Logic goes here
+        if(null != requestObject.getPassword()){
+            String decryptedPassword = this.getDecryptedValue(String.valueOf(requestObject.getPassword()), this.intPrivateKey);
+            requestObject.setPassword(encryptor.encrypt(decryptedPassword).toCharArray());
+            return targetService.serviceApiMethod(requestObject);
+        }
+    }
+
+
+// Example cypher with no data that could be used to decrypt a password that was in transit
+private String getDecryptedValue(String enryptedValue, String privateKey) throws CustomException {
+
+}
